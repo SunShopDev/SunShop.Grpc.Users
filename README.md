@@ -3,7 +3,7 @@
 Servicio gRPC para gestión de usuarios en .NET 8.
 
 ## Descripción
-Este proyecto implementa un microservicio gRPC para la administración de usuarios, utilizando Entity Framework Core, FluentValidation, Serilog y autenticación con BCrypt. El servicio está preparado para ejecutarse en contenedores Docker y orquestarse con docker-compose junto a otros servicios como SQL Server, RabbitMQ y Redis.
+Este proyecto implementa un microservicio gRPC para la administración de usuarios, utilizando Entity Framework Core, FluentValidation, Serilog y autenticación con BCrypt. El servicio está preparado para ejecutarse en contenedores Docker y orquestarse con docker-compose junto a otros servicios como SQL Server.
 
 ## Servicios gRPC disponibles
 - **GetUser**: Obtiene un usuario por ID.
@@ -37,22 +37,33 @@ Este proyecto implementa un microservicio gRPC para la administración de usuario
    dotnet run
    ```
 
-## Ejecución con Docker Compose
+## Ejecución con Docker Compose "Recomendada"
 1. Construir y levantar los servicios:
-   ```bash
-   cd Infra
+   ```bash   
    docker-compose up --build -d
    ```
-2. El servicio gRPC estará disponible en el puerto `7001`.
+2. En Docker Desktop, verificar que los contenedores estén corriendo
+
+3. El servicio gRPC estará disponible en el puerto `7001`.
 
 ## Invocación gRPC con Postman
 Puedes invocar el servicio gRPC usando Postman desde el siguiente enlace:
-[Workspace Postman gRPC](https://postman.co/workspace/Noverti~6477bd44-190a-4c56-a720-ed1d91a1ea65/grpc-request/6912f48cc9574d367feb0fe2?action=share&creator=27540494)
+[Workspace Postman gRPC](https://web.postman.co/workspace/Noverti~6477bd44-190a-4c56-a720-ed1d91a1ea65/collection/6912f48b7d7b25fed5181afc?action=share&source=copy-link&creator=27540494)
+
+## Detener el servicio de Docker Compose
+   ```bash   
+    docker-compose stop
+    docker-compose down
+   ```
+
+## Conectarse a la BD en Local
+Server: localhost
+Puerto: 1434
+Usuario y Pass: se encuentran en `docker-compose.yml`.
 
 
 ## Configuración
-- La cadena de conexión a SQL Server y las credenciales de RabbitMQ se configuran en `docker-compose.yml` y `appsettings.json`.
-- Los logs se almacenan en la carpeta `Logs`.
+- La cadena de conexión a SQL Server se configuran en `docker-compose.yml` y `appsettings.json`.
 
 ## Estructura principal
 - `Protos/`: Definición de contratos gRPC.
@@ -71,7 +82,7 @@ Puedes invocar el servicio gRPC usando Postman desde el siguiente enlace:
 
 
 ## Notas
-- Para desarrollo local, asegúrate de que SQL Server y RabbitMQ estén disponibles.
+- Para desarrollo local, asegúrate de que SQL Server estén disponibles.
 - Dentro de Docker, los servicios se comunican usando los nombres definidos en `docker-compose.yml`.
 
 ## Licencia

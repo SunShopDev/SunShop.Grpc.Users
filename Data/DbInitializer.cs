@@ -6,7 +6,7 @@ namespace SunShop.Grpc.Users.Data;
 
 public static class DbInitializer
 {
-    public static async Task InitializeAsync(UserDbContext context, ILogger logger)
+    public static async Task InitializeAsync(UsersDbContext context, ILogger logger)
     {
         try
         {

@@ -2,9 +2,9 @@ syntax = "proto3";
 
 option csharp_namespace = "SunShop.Grpc.Users.Protos";
 
-package userservice;
+package SunShop;
 
-service UserService {
+service Users {
     rpc GetUsers (GetUsersRequest) returns (stream UserResponse);    
     rpc GetUser (GetUserRequest) returns (UserResponse);    
     rpc CreateUser (CreateUserRequest) returns (UserResponse);

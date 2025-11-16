@@ -1,25 +1,7 @@
-//using SunShop.Grpc.Users.Services;
-
-//var builder = WebApplication.CreateBuilder(args);
-
-//// Add services to the container.
-//builder.Services.AddGrpc();
-
-//var app = builder.Build();
-
-//// Configure the HTTP request pipeline.
-//app.MapGrpcService<GreeterService>();
-//app.MapGet("/", () => "Communication with gRPC endpoints must be made through a gRPC client. To learn how to create a client, visit: https://go.microsoft.com/fwlink/?linkid=2086909");
-
-//app.Run();
 
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
-using SunShop.Grpc.Users.Data;
-using SunShop.Grpc.Users.Protos;
-using SunShop.Grpc.Users.Services;
-using SunShop.Grpc.Users.Validators;
 using SunShop.Grpc.Users.Data;
 using SunShop.Grpc.Users.Protos;
 using SunShop.Grpc.Users.Services;
@@ -33,7 +15,7 @@ try
 
     builder.Host.UseSerilog();
 
-    builder.Services.AddDbContext<UserDbContext>(options =>
+    builder.Services.AddDbContext<UsersDbContext>(options =>
     {
         var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
         options.UseSqlServer(connectionString, sqlOptions =>
@@ -74,7 +56,7 @@ try
         var services = scope.ServiceProvider;
         try
         {
-            var context = services.GetRequiredService<UserDbContext>();
+            var context = services.GetRequiredService<UsersDbContext>();
             var logger = services.GetRequiredService<ILogger<Program>>();
             await DbInitializer.InitializeAsync(context, logger);
         }
@@ -92,7 +74,7 @@ try
     }
 
     // Mapear servicio gRPC
-    app.MapGrpcService<UserGrpcService>();
+    app.MapGrpcService<UsersGrpcService>();
 
     // Endpoint de salud básico
     app.MapGet("/health", () => Results.Ok(new

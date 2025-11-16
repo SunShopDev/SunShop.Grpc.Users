@@ -3,9 +3,9 @@ using SunShop.Grpc.Users.Models;
 
 namespace SunShop.Grpc.Users.Data;
 
-public class UserDbContext: DbContext
+public class UsersDbContext: DbContext
 {
-    public UserDbContext(DbContextOptions<UserDbContext> options)
+    public UsersDbContext(DbContextOptions<UsersDbContext> options)
     : base(options)
     {
     }

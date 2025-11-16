@@ -7,17 +7,17 @@ using SunShop.Grpc.Users.Protos;
 
 namespace SunShop.Grpc.Users.Services;
 
-public class UserGrpcService : global::SunShop.Grpc.Users.Protos.UserService.UserServiceBase
+public class UsersGrpcService : global::SunShop.Grpc.Users.Protos.Users.UsersBase
 {
-    private readonly UserDbContext _context;
-    private readonly ILogger<UserGrpcService> _logger;
+    private readonly UsersDbContext _context;
+    private readonly ILogger<UsersGrpcService> _logger;
     private readonly IValidator<GetUsersRequest> _getUsersValidator;
     private readonly IValidator<GetUserRequest> _getUserValidator;
     private readonly IValidator<CreateUserRequest> _createUserValidator;
     private readonly IValidator<UpdateUserRequest> _updateUserValidator;
     private readonly IValidator<DeleteUserRequest> _deleteUserValidator;
 
-    public UserGrpcService( UserDbContext context, ILogger<UserGrpcService> logger, 
+    public UsersGrpcService( UsersDbContext context, ILogger<UsersGrpcService> logger, 
                             IValidator<GetUserRequest> getUserValidator,
                             IValidator<GetUsersRequest> getUsersValidator,
                             IValidator<CreateUserRequest> createUserValidator,
